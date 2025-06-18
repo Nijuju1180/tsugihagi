@@ -1,0 +1,202 @@
+<!-- HTML文書の型宣言 -->
+<!DOCTYPE html>
+<!-- HTML文書の開始、言語は日本語 -->
+<html lang="ja">
+
+<!-- ヘッダー情報の開始 -->
+<head>
+  <!-- 文字コードをUTF-8に設定 -->
+  <meta charset="UTF-8">
+  <!-- モバイル端末用の表示設定 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ブラウザのタブに表示されるタイトル -->
+  <title>クラウドファンディングプロジェクト</title>
+
+  <!-- CSSスタイルの定義開始 -->
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+      color: #333;
+    }
+
+    header {
+      background: #007bff;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #007bff;
+    }
+
+    .support-section {
+      margin-top: 30px;
+    }
+
+    label, select, input {
+      display: block;
+      margin: 10px 0;
+    }
+
+    .btn {
+      background: #28a745;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #218838;
+    }
+
+    /* 表のスタイル */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>劇団つぎはぎ公演</h1>
+    <p>クラウドファンディング プロジェクトへようこそ</p>
+  </header>
+
+  <div class="container">
+    <h2>初めにご挨拶</h2>
+    <p>(text)</p>
+
+    <h2>プロジェクト概要</h2>
+    <p>(仮テキスト)このプロジェクトは〇〇を実現するための資金を募っています。あなたの支援が力になります！</p>
+
+    <h2>なぜクラウドファンディング？</h2>
+    <p>
+      新作公演を実現するためには、劇場のレンタル費や衣装・小道具の制作費など、どうしても一定の費用が必要になります。
+      私たちのような小規模劇団にとって、それらの費用は大きな壁となることも。そこで皆さまのお力をお借りし、クラウドファンディングという形で支援を募ることにしました。
+    </p>
+
+    <h2>支援する</h2>
+    <div class="support-section">
+      <form action="https://buy.stripe.com/test_XXXXXXXXXXXX" method="GET">
+        <label for="amount">支援金額を選んでください：</label>
+        <select id="amount" name="amount">
+          <option value="1000">1,000円</option>
+          <option value="2000">2,000円</option>
+          <option value="3000">3,000円</option>
+        </select>
+        <button type="submit" class="btn">支援する</button>
+      </form>
+    </div>
+
+    <h2>支援コース一覧</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>コース名</th>
+          <th>金額</th>
+          <th>リターン内容</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>応援コース</td>
+          <td>1,000円</td>
+          <td>チケット</td>
+        </tr>
+        <tr>
+          <td>スタンダードコース</td>
+          <td>2,000円</td>
+          <td>限定グッズ＋脚本</td>
+        </tr>
+        <tr>
+          <td>プレミアムコース</td>
+          <td>3,000円</td>
+          <td>限定グッズ＋脚本＋メイキング映像</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>実施スケジュール</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>日付</th>
+          <th>内容</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2025年7月</td>
+          <td>クラウドファンディング開始</td>
+        </tr>
+        <tr>
+          <td>2025年8月</td>
+          <td>支援受付終了・準備開始</td>
+        </tr>
+        <tr>
+          <td>2025年9月</td>
+          <td>公演・リターンの発送</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>目標金額の使い方</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>用途</th>
+          <th>金額（目安）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>劇場レンタル費</td>
+          <td>50,000円</td>
+        </tr>
+        <tr>
+          <td>衣装・小道具制作</td>
+          <td>30,000円</td>
+        </tr>
+        <tr>
+          <td>リターン制作・発送費</td>
+          <td>20,000円</td>
+        </tr>
+      </tbody>
+    </table>
+
+      <h2>最後に</h2>
+    <p>
+      一人ひとりの応援が、舞台というカタチになって多くの人に届けられます。ご支援いただいた皆さまには、感謝の気持ちを込めたリターンをご用意しています。
+      私たちの挑戦をぜひ応援してください！
+    </p>
+  </div>
+</body>
+</html>
