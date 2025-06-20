@@ -1,40 +1,31 @@
-header {
-  background: #33327e;
-  color: white;
-  padding: 20px;
+.side-menu {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+  top: 20px;
+  left: 20px;
+  background: rgba(255, 255, 255, 0.8); /* 半透明白 */
+  border-radius: 16px;
+  padding: 20px 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
 }
 
-.header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1000px;
-  margin: 0 auto;
+.side-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-h1 {
-  display: flex;
-  align-items: center;
-  font-size: 1.5rem;
+.side-menu li {
+  margin-bottom: 15px;
 }
 
-.icon {
-  height: 32px;
-  margin-right: 10px;
-}
-
-nav a {
-  margin-left: 15px;
+.side-menu a {
   text-decoration: none;
-  color: white;
-  font-weight: bold;
+  color: #333;
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 
-body {
-  padding-top: 100px; /* 固定ヘッダーの分だけ余白を確保 */
+.side-menu a:hover {
+  color: #1e90ff;
 }
