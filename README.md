@@ -23,7 +23,7 @@ To open the file locally, you can view it by following these steps.
 ### 1. clone or download
 
 ```bash 
-git clone https://github.com/ユーザー名/tsugihagi-site.git 
+git clone https://github.com/Nijuju1180/tsugihagi-site.git 
 cd tsugihagi-site
 
 Translated with DeepL.com (free version)
