@@ -1,0 +1,7 @@
+.button-row {
+  display: flex;
+  gap: 15px; /* ボタン同士の間隔 */
+  flex-wrap: wrap; /* スマホなど狭い画面で折り返す */
+  justify-content: center; /* 中央寄せ（お好みで） */
+  margin-top: 15px;
+}
