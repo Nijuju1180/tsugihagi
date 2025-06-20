@@ -1,0 +1,40 @@
+header {
+  background: #33327e;
+  color: white;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+h1 {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.icon {
+  height: 32px;
+  margin-right: 10px;
+}
+
+nav a {
+  margin-left: 15px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+body {
+  padding-top: 100px; /* 固定ヘッダーの分だけ余白を確保 */
+}
