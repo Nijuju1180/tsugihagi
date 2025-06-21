@@ -1,0 +1,13 @@
+.container {
+  width: 100%;
+  max-width: 800px;    /* 最大幅 800px に統一 */
+  margin: 0 auto;      /* 左右中央に配置 */
+  padding: 0 20px;     /* 両端に20pxの余白を追加 */
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 10px;  /* 狭い画面では余白を減らす */
+  }
+}
