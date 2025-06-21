@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>劇団つぎはぎ - 公式サイト</title>
+  <link rel="stylesheet" href="css/active.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="css/botton-row.css">
   <link rel="stylesheet" href="css/icon.css">
@@ -74,7 +75,7 @@
     </h1>
     <p>つぎはぎが紡ぐ、あなたの物語</p>
     <nav>
-      <a href="home.html">ホーム</a>
+      <a href="home.html" class="active">ホーム</a>
       <a href="about.html">劇団紹介</a>
       <a href="shows.html">公演情報</a>
       <a href="support.html">支援・チケット</a>
@@ -101,5 +102,26 @@
   <p>&copy; 2025 劇団つぎはぎ All rights reserved.</p>
 </footer>
 
+<button id="toTopBtn" title="ページの先頭へ">↑</button>
+<script>
+  const toTopBtn = document.getElementById("toTopBtn");
+
+  // スクロールで表示・非表示を切り替え
+  window.onscroll = function () {
+    if (document.documentElement.scrollTop > 300) {
+      toTopBtn.style.display = "block";
+    } else {
+      toTopBtn.style.display = "none";
+    }
+  };
+
+  // ボタンをクリックするとトップに戻る
+  toTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+</script>
 </body>
 </html>
