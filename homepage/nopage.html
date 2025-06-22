@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="css/active.css">
   <link rel="stylesheet" href="css/botton-row.css">
   <link rel="stylesheet" href="css/header-inner.css">
-  <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/icon.css">
   <link rel="stylesheet" href="css/toTopBtn.css">
 </head>
@@ -25,24 +25,42 @@
       <a href="home.html">ホーム</a>
       <a href="about.html">劇団紹介</a>
       <a href="shows.html">公演情報</a>
-      <a href="support.html" class="active">支援・チケット</a>
+      <a href="support.html">支援・チケット</a>
       <a href="contact.html">お問い合わせ</a>
     </nav>
   </div>
 </header>
 
-<section id="support">
-  <h2>支援・チケット</h2>
-  <p>劇団つぎはぎでは、クラウドファンディングやチケットのご予約を受け付けております。</p>
-  <div class="button-row">
-  <a class="public-btn" href="nopage.html" target="_blank">支援ページはこちら</a>
-  <a class="public-btn" href="nopage.html" target="_blank">チケット予約ページ</a>
-  </div>
+<section id="nopage">
+  <h2>ページ準備中！</h2>
+  <p>近日中に公開予定</p>
 </section>
 
 <footer>
   <p>&copy; 2025 劇団つぎはぎ All rights reserved.</p>
 </footer>
+
+<button id="toTopBtn" title="�y�[�W�̐擪��">��</button>
+<script>
+  const toTopBtn = document.getElementById("toTopBtn");
+
+  // �X�N���[���ŕ\���E��\����؂�ւ�
+  window.onscroll = function () {
+    if (document.documentElement.scrollTop > 300) {
+      toTopBtn.style.display = "block";
+    } else {
+      toTopBtn.style.display = "none";
+    }
+  };
+
+  // �{�^�����N���b�N����ƃg�b�v�ɖ߂�
+  toTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+</script>
 </div>
 </body>
 </html>
