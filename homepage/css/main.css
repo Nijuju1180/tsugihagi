@@ -3,6 +3,7 @@ body {
   font-family: 'Helvetica', sans-serif;
   background: #f1f2ec;
   color: #333;
+  padding-top: 150px;
 }
 
 header {
@@ -10,6 +11,10 @@ header {
   color: #f1f2ec;
   padding: 30px 20px;
   text-align: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 nav {
@@ -24,6 +29,11 @@ nav a {
   color: #33327e;
   font-weight: bold;
 }
+
+nav a.active {
+  border-bottom: 2px solid #fff;
+}
+
 
 section {
   padding: 40px 20px;
@@ -59,4 +69,13 @@ footer {
 
 .public-btn:hover {
   background: #218838;
+}
+
+.btn {
+  display: inline-block;
+  background: #28a745;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
 }
