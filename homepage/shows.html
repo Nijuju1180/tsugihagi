@@ -42,6 +42,28 @@
 <footer>
   <p>&copy; 2025 劇団つぎはぎ All rights reserved.</p>
 </footer>
+
+<button id="toTopBtn" title="ページの先頭へ">↑</button>
+<script>
+  const toTopBtn = document.getElementById("toTopBtn");
+
+  // スクロールで表示・非表示を切り替え
+  window.onscroll = function () {
+    if (document.documentElement.scrollTop > 300) {
+      toTopBtn.style.display = "block";
+    } else {
+      toTopBtn.style.display = "none";
+    }
+  };
+
+  // ボタンをクリックするとトップに戻る
+  toTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+</script>
 </div>
 </body>
 </html>
