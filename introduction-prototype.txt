@@ -1,0 +1,16 @@
+    <p class="person-img">
+      <img src="images/person/IiyamaKentaro.png" alt="いーやま" class="person-img">
+    </p>
+    <div class="texBlock">
+      <p class="name">
+        "いーやま"
+        <span class="txtS">／役者</span>
+      </p>
+      <p class="txt">
+        みなさんこんにちは！いーやまです！よろしくお願いします♪(仮テキスト)
+        <br>
+        人物紹介をかくか？どう使うかは未定
+        <br>
+        意気込みなども書く？
+      </p>
+    </div> 
