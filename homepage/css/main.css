@@ -32,7 +32,7 @@ nav a {
 }
 
 nav a.active {
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid #f1f2ec;
 }
 
 
@@ -75,7 +75,7 @@ footer {
 .btn {
   display: inline-block;
   background: #28a745;
-  color: #fff;
+  color: #f1f2ec;
   padding: 10px 20px;
   text-decoration: none;
   border-radius: 5px;
