@@ -23,7 +23,7 @@ nav {
   text-align: center;
   gap: 30px;
   z-index: 2;
-  position: fixed;
+  position: sticky;
   top: 170px;
   left: 0;
   width: 100%;
