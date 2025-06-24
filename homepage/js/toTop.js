@@ -1,13 +1,23 @@
-document.querySelectorAll("nav a").forEach(a => {
-  if (a.href === location.href) a.classList.add("active");
-});
+window.addEventListener("load",()=>{
 
-const toTopBtn = document.getElementById("toTopBtn");
+  const toTopBtn = document.createElement("button");
+  toTopBtn.textContent = "ª";
+  toTopBtn.title = "ƒy[ƒW‚Ìæ“ª‚Ö";
+  toTopBtn.id = "toTopBtn";
+  document.body.appendChild(toTopBtn);
 
-window.addEventListener("scroll", () => {
-  toTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
-});
+  document.querySelectorAll("nav a").forEach(a => {
+    console.log("aaa");
+    console.log(a.href, location.href);
+    if (a.href === location.href) a.classList.add("active");
+  });
 
-toTopBtn.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
+  window.addEventListener("scroll", () => {
+    toTopBtn.style.display = document.documentElement.scrollTop > 300 ? "block" : "none";
+  });
+
+  toTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+})
