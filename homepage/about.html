@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="劇団つぎはぎの公式サイト。公演情報、支援チケット、お問い合わせなど">
   <meta property="og:title" content="劇団つぎはぎ 公式サイト">
-  <meta property="og:description" content="継いで、剥いで、あなたを魅せる舞台を作る。">
+  <meta property="og:description" content="誰継いで、剥いで、あなたを魅せる舞台を作る。">
+  <meta property="og:image" content="https://Nijuju1180.github.io/tsugihagi/images/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="劇団つぎはぎ 公式サイト">
   <meta name="twitter:description" content="継いで、剥いで、あなたを魅せる舞台を作る。">
@@ -21,6 +22,7 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/person-img.css">
   <link rel="stylesheet" href="css/toTopBtn.css">
+  <script src="js/toTop.js"></script>
 </head>
 
 <body>
@@ -37,7 +39,7 @@
 
 <nav>
   <a href="home.html">ホーム</a>
-  <a href="about.html" class="active">劇団紹介</a>
+  <a href="about.html">劇団紹介</a>
   <a href="shows.html">公演情報</a>
   <a href="support.html">支援・チケット</a>
   <a href="contact.html">お問い合わせ</a>
@@ -71,27 +73,6 @@
   <p>&copy; 2025 劇団つぎはぎ All rights reserved.</p>
 </footer>
 
-<button id="toTopBtn" title="ページの先頭へ">↑</button>
-<script>
-  const toTopBtn = document.getElementById("toTopBtn");
-
-  // スクロールで表示・非表示を切り替え
-  window.onscroll = function () {
-    if (document.documentElement.scrollTop > 300) {
-      toTopBtn.style.display = "block";
-    } else {
-      toTopBtn.style.display = "none";
-    }
-  };
-
-  // ボタンをクリックするとトップに戻る
-  toTopBtn.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  });
-</script>
 </div>
 </body>
 </html>

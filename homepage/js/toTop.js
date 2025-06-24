@@ -1,8 +1,8 @@
 window.addEventListener("load",()=>{
 
   const toTopBtn = document.createElement("button");
-  toTopBtn.textContent = "ª";
-  toTopBtn.title = "ƒy[ƒW‚Ìæ“ª‚Ö";
+  toTopBtn.textContent = "?";
+  toTopBtn.title = "???????";
   toTopBtn.id = "toTopBtn";
   document.body.appendChild(toTopBtn);
 
