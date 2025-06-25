@@ -1,9 +1,9 @@
-window.addEventListener("load", () => {
-  const toggleBtn = document.getElementById("navToggle");
-  const nav = document.getElementById("mainNav");
+document.addEventListener("DOMContentLoaded", () => {
+  const navToggle = document.querySelector(".nav-toggle");
+  const nav = document.querySelector(".nav");
 
-  if (toggleBtn && nav) {
-    toggleBtn.addEventListener("click", () => {
+  if (navToggle && nav) {
+    navToggle.addEventListener("click", () => {
       nav.classList.toggle("show");
     });
   }

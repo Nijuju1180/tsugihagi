@@ -19,6 +19,7 @@
   background: transparent;
   border: none;
   font-size: 24px;
+  background-image: url("images/navibtn.png");
 }
 
 .nav-toggle span {
@@ -36,6 +37,7 @@
     text-align: center;
     background: #f1f2ec;
     position: absolute;
+    padding: 0;
     top: 60px;
     left: 0;
     width: 100%;

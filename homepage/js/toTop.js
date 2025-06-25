@@ -7,7 +7,7 @@ window.addEventListener("load",()=>{
   document.body.appendChild(toTopBtn);
 
   document.querySelectorAll("nav a").forEach(a => {
-    console.log("aaa");
+    console.log("nav check");
     console.log(a.href, location.href);
     if (a.href === location.href) a.classList.add("active");
   });
