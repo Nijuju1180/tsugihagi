@@ -5,18 +5,17 @@
   margin-right: 10px;
 }
 
-/* ▼画像とテキストを横並びにするためのスタイルを追加 */
 li {
   display: flex;
   align-items: flex-start;
-  gap: 20px; /* 画像とテキストの間の余白 */
+  gap: 20px;
   margin-bottom: 30px;
 }
 
 .person-img img {
   height: 100%;
   width: auto;
-  border-radius: 8px; /* 角を丸くしたい場合 */
+  border-radius: 8px;
 }
 
 .texBlock {

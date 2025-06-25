@@ -1,8 +1,8 @@
 window.addEventListener("load",()=>{
 
   const toTopBtn = document.createElement("button");
-  toTopBtn.textContent = "?";
-  toTopBtn.title = "???????";
+  toTopBtn.textContent = "↑";
+  toTopBtn.title = "ページの先頭へ";
   toTopBtn.id = "toTopBtn";
   document.body.appendChild(toTopBtn);
 
