@@ -6,7 +6,7 @@
 }
 
 /* ハンバーガーボタン */
-.nav-Toggle {
+.nav-toggle {
   display: none;
   flex-direction: column;
   cursor: pointer;
@@ -21,7 +21,7 @@
   font-size: 24px;
 }
 
-.nav-Toggle span {
+.nav-toggle span {
   height: 3px;
   background-color: #333;
   width: 100%;
@@ -46,7 +46,7 @@
     display: flex;
   }
 
-  .nav-Toggle {
+  .nav-toggle {
     display: flex;
   }
 }
@@ -60,7 +60,7 @@
     position: static;
   }
 
-  .nav-Toggle {
+  .nav-toggle {
     display: none;
   }
 }
