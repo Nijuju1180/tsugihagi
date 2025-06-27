@@ -12,6 +12,7 @@
   cursor: pointer;
   gap: 5px;
   width: 30px;
+  height: 30px;
   margin: 10px;
   position: absolute;
   top: 10px;
@@ -19,7 +20,8 @@
   background: transparent;
   border: none;
   font-size: 24px;
-  background-image: url("images/navibtn.png");
+  background-image: url("../images/navibtn.png");
+  z-index: 9995;
 }
 
 .nav-toggle span {
@@ -41,7 +43,7 @@
     top: 60px;
     left: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 3;
   }
 
   .nav.show {
