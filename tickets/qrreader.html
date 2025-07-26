@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QRコードリーダー</title>
+    <!-- handleScriptError 関数を ZXing ライブラリの読み込みより前に定義 -->
+    <script>
+        // グローバルスコープにスクリプト読み込みエラーハンドラを定義
+        function handleScriptError(scriptElement) {
+            console.error(`[QRCodeReader] ZXingライブラリの読み込みに失敗しました。URL: ${scriptElement.src}`);
+            const statusElement = document.getElementById('status');
+            if (statusElement) {
+                statusElement.textContent = 'ZXingライブラリの読み込みに失敗しました。ネットワーク接続を確認してください。';
+                statusElement.className = 'status error';
+            }
+            // 必要に応じて、他のUI要素も無効にするなど、適切なエラー処理を行う
+            const startBtn = document.getElementById('startBtn');
+            if (startBtn) startBtn.disabled = true;
+        }
+    </script>
+    <!-- ZXingライブラリの読み込み。onerror属性を追加して読み込みエラーを捕捉 -->
+    <!-- URLをユーザーが指定した新しいものに変更 -->
+    <script src="https://unpkg.com/@zxing/library@latest" onerror="handleScriptError(this)"></script>
+    <style>
+        /* 全体のリセット */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ボディのスタイル */
+        body {
+            font-family: 'Inter', sans-serif; /* Interフォントを使用 */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* グラデーション背景 */
+            min-height: 100vh; /* 最小高さをビューポートの高さに設定 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* 中央揃え */
+            padding: 20px;
+        }
+
+        /* コンテナのスタイル */
+        .container {
+            background: rgba(255, 255, 255, 0.95); /* 半透明の白背景 */
+            border-radius: 20px; /* 角を丸く */
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); /* 影 */
+            backdrop-filter: blur(10px); /* 背景のぼかし */
+            max-width: 600px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* 要素間のスペース */
+        }
+
+        /* タイトルのスタイル */
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #667eea, #764ba2); /* グラデーションテキスト */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* カメラコンテナのスタイル */
+        .camera-container {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ビデオ要素のスタイル */
+        #video {
+            width: 100%;
+            height: 400px;
+            object-fit: cover; /* 縦横比を維持して要素を埋める */
+            background: #000;
+            border-radius: 15px; /* 角を丸く */
+        }
+
+        /* オーバーレイ関連のスタイルは削除 */
+
+        /* コントロールボタン群のスタイル */
+        .controls {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap; /* 折り返し */
+            gap: 15px; /* ボタン間のスペース */
+        }
+
+        /* ボタンのスタイル */
+        button {
+            background: linear-gradient(45deg, #667eea, #764ba2); /* グラデーション背景 */
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px; /* 丸いボタン */
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease; /* ホバーアニメーション */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            transform: translateY(-2px); /* 少し上に移動 */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* 結果表示エリアのスタイル */
+        .result {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            min-height: 100px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        /* 結果表示成功時のスタイル */
+        .result.success {
+            border-color: #4caf50; /* 緑色のボーダー */
+            background: rgba(76, 175, 80, 0.1); /* 薄い緑色の背景 */
+            animation: slideIn 0.5s ease; /* スライドインアニメーション */
+        }
+
+        /* スライドインアニメーション */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 結果タイトル */
+        .result h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        /* 結果テキストのスタイル */
+        .result-text {
+            word-break: break-all; /* 長い単語を改行 */
+            color: #555;
+            font-size: 14px;
+            line-height: 1.5;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+
+        /* ステータス表示のスタイル */
+        .status {
+            text-align: center;
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        /* ステータス：準備完了 */
+        .status.ready {
+            background: rgba(76, 175, 80, 0.2);
+            color: #2e7d32;
+        }
+
+        /* ステータス：スキャン中 */
+        .status.scanning {
+            background: rgba(255, 193, 7, 0.2);
+            color: #f57c00;
+        }
+
+        /* ステータス：エラー */
+        .status.error {
+            background: rgba(244, 67, 54, 0.2);
+            color: #c62828;
+        }
+
+        /* コピーボタンのスタイル */
+        .copy-btn {
+            background: linear-gradient(45deg, #4caf50, #45a049);
+            padding: 10px 20px;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+        /* モーダル（アラート代替）のスタイル */
+        .modal {
+            display: none; /* 初期状態では非表示 */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 300px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .modal-content button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            #video {
+                height: 300px;
+            }
+            .overlay {
+                width: 150px;
+                height: 150px;
+            }
+            button {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>QRコードリーダー</h1>
+
+        <div class="camera-container">
+            <video id="video" autoplay playsinline></video>
+        </div>
+
+        <div class="controls">
+            <button id="startBtn">📷 スキャン開始</button>
+            <button id="stopBtn" disabled>⏹️ 停止</button>
+            <button id="switchBtn" disabled>🔄 カメラ切替</button>
+        </div>
+
+        <div id="status" class="status">カメラの準備ができました</div>
+
+        <div id="result" class="result">
+            <h3>📋 読み取り結果</h3>
+            <div id="resultText" class="result-text">QRコードをカメラに向けてください</div>
+        </div>
+    </div>
+
+    <!-- モーダルダイアログ（アラートの代替） -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <p id="modalMessage"></p>
+            <button id="closeModalBtn">OK</button>
+        </div>
+    </div>
+
+    <script>
+        class QRCodeReader {
+            constructor() {
+                this.codeReader = null; // ZXing BrowserQRCodeReader のインスタンス
+                this.video = document.getElementById('video'); // ビデオ要素
+                this.startBtn = document.getElementById('startBtn'); // スキャン開始ボタン
+                this.stopBtn = document.getElementById('stopBtn'); // 停止ボタン
+                this.switchBtn = document.getElementById('switchBtn'); // カメラ切り替えボタン
+                this.status = document.getElementById('status'); // ステータス表示要素
+                this.result = document.getElementById('result'); // 結果表示コンテナ
+                this.resultText = document.getElementById('resultText'); // 結果テキスト表示要素
+                this.isScanning = false; // スキャン中かどうか
+                this.devices = []; // 利用可能なカメラデバイスのリスト
+                this.currentDeviceIndex = 0; // 現在使用中のカメラのインデックス
+                this.stream = null; // カメラのメディアストリーム (未使用だが、将来的な拡張のために残す)
+
+                // モーダル要素の取得
+                this.modal = document.getElementById('myModal');
+                this.modalMessage = document.getElementById('modalMessage');
+                this.closeModalBtn = document.getElementById('closeModalBtn');
+
+                this.init(); // 初期化処理を開始
+            }
+
+            // アプリケーションの初期化
+            async init() {
+                console.log('[QRCodeReader] 初期化を開始します。');
+                try {
+                    console.log('[QRCodeReader] ZXingライブラリのロードを待機中...');
+                    // ZXingがロードされているか確認し、ロードされていない場合は待機
+                    // handleScriptErrorが呼び出された場合は、このPromiseは解決されない
+                    await this.waitForZXing();
+                    console.log('[QRCodeReader] ZXingライブラリがロードされました。');
+
+                    console.log('[QRCodeReader] BrowserQRCodeReader インスタンスの作成を試行中...');
+                    this.codeReader = new ZXing.BrowserQRCodeReader();
+                    console.log('[QRCodeReader] BrowserQRCodeReader インスタンスが作成されました。');
+
+                    console.log('[QRCodeReader] カメラデバイスのリスト取得を試行中...');
+                    this.devices = await this.codeReader.listVideoInputDevices();
+                    console.log('[QRCodeReader] 検出されたカメラデバイス:', this.devices);
+
+                    if (this.devices.length === 0) {
+                        this.showStatus('カメラが見つかりません', 'error');
+                        console.warn('[QRCodeReader] カメラが見つかりませんでした。デバイスリストが空です。');
+                        return;
+                    }
+                    if (this.devices.length > 1) {
+                        this.switchBtn.disabled = false;
+                        console.log('[QRCodeReader] 複数のカメラが検出されました。カメラ切り替えボタンを有効にします。');
+                    }
+                    this.setupEventListeners();
+                    this.showStatus('カメラの準備ができました', 'ready');
+                    console.log('[QRCodeReader] 初期化が完了しました。');
+                } catch (error) {
+                    console.error('[QRCodeReader] 初期化中に致命的なエラーが発生しました:', error);
+                    // Check for specific error types related to camera access
+                    if (error.name === 'NotAllowedError' || error.name === 'PermissionDeniedError') {
+                        this.showStatus('カメラへのアクセスが拒否されました。ブラウザの設定を確認してください。', 'error');
+                        console.error('[QRCodeReader] エラー詳細: カメラアクセスが拒否されました。');
+                    } else if (error.name === 'NotFoundError') {
+                        this.showStatus('利用可能なカメラがありません。', 'error');
+                        console.error('[QRCodeReader] エラー詳細: 利用可能なカメラが見つかりません。');
+                    } else if (error.name === 'NotReadableError') {
+                        this.showStatus('カメラが使用中です。他のアプリケーションを閉じてください。', 'error');
+                        console.error('[QRCodeReader] エラー詳細: カメラがすでに使用中です。');
+                    } else if (error.name === 'OverconstrainedError') {
+                        this.showStatus('カメラの制約を満たせません。', 'error');
+                        console.error('[QRCodeReader] エラー詳細: カメラの制約エラー。', error.message);
+                    } else {
+                        this.showStatus('カメラの初期化に失敗しました。', 'error');
+                    }
+                }
+            }
+
+            // ZXingライブラリのロードを待つヘルパー関数
+            async waitForZXing() {
+                return new Promise((resolve, reject) => {
+                    // ZXingが既に定義されているかチェック
+                    // @zxing/library の場合、ZXing.BrowserQRCodeReader は ZXing.BrowserQRCodeReader として直接利用可能
+                    if (typeof ZXing !== 'undefined' && typeof ZXing.BrowserQRCodeReader !== 'undefined') {
+                        resolve();
+                        return;
+                    }
+
+                    let scriptLoadFailed = false;
+                    const originalHandleScriptError = window.handleScriptError;
+                    window.handleScriptError = (scriptElement) => {
+                        scriptLoadFailed = true;
+                        if (originalHandleScriptError) {
+                            originalHandleScriptError(scriptElement); // 元のエラーハンドラも呼び出す
+                        }
+                        reject(new Error('ZXing script failed to load.'));
+                    };
+
+                    const checkZXing = () => {
+                        if (scriptLoadFailed) {
+                            // スクリプトの読み込みが失敗した場合は、もうチェックしない
+                            return;
+                        }
+                        if (typeof ZXing !== 'undefined' && typeof ZXing.BrowserQRCodeReader !== 'undefined') {
+                            resolve();
+                        } else {
+                            setTimeout(checkZXing, 100); // 100msごとにチェック
+                        }
+                    };
+                    checkZXing();
+                });
+            }
+
+            // イベントリスナーの設定
+            setupEventListeners() {
+                (async () => { this.startScanning() })();
+                this.startBtn.addEventListener('click', () => this.startScanning());
+                this.stopBtn.addEventListener('click', () => this.stopScanning());
+                this.switchBtn.addEventListener('click', () => this.switchCamera());
+                this.closeModalBtn.addEventListener('click', () => this.modal.style.display = 'none');
+                window.addEventListener('click', (event) => {
+                    if (event.target == this.modal) {
+                        this.modal.style.display = 'none';
+                    }
+                });
+                console.log('[QRCodeReader] イベントリスナーが設定されました。');
+            }
+
+            // スキャンを開始
+            async startScanning() {
+                if (this.isScanning) {
+                    console.log('[QRCodeReader] すでにスキャン中です。');
+                    return; // すでにスキャン中なら何もしない
+                }
+                console.log('[QRCodeReader] スキャンを開始します。');
+                try {
+                    this.isScanning = true;
+                    this.startBtn.disabled = true;
+                    this.stopBtn.disabled = false;
+                    this.showStatus('スキャン中...', 'scanning');
+
+                    // カメラデバイスが検出されているか再確認
+                    if (this.devices.length === 0) {
+                        this.showStatus('カメラが見つかりません。スキャンを開始できません。', 'error');
+                        console.error('[QRCodeReader] エラー: スキャン開始時にカメラデバイスが利用できません。');
+                        this.resetButtons();
+                        return;
+                    }
+
+                    const deviceId = this.devices[this.currentDeviceIndex].deviceId;
+                    console.log(`[QRCodeReader] 使用するカメラデバイスID: ${deviceId}`);
+
+                    console.log('[QRCodeReader] decodeFromVideoDevice を呼び出しています...');
+                    this.codeReader.decodeFromVideoDevice(
+                        deviceId,
+                        this.video,
+                        (result, error) => {
+                            if (result) {
+                                console.log('[QRCodeReader] QRコード検出コールバック: 結果あり。');
+                                this.onQRCodeDetected(result);
+                            }
+                            if (error) {
+                                if (error.name !== 'NotFoundException') {
+                                    this.showStatus('スキャンエラーが発生しました', 'error');
+                                } else {
+                                    console.log('[QRCodeReader] QRコード検出コールバック: NotFoundException (QRコードなし)。');
+                                }
+                            }
+                        }
+                    );
+                    console.log('[QRCodeReader] decodeFromVideoDevice が正常に呼び出されました。');
+
+                } catch (error) {
+                    console.error('[QRCodeReader] スキャン開始中にエラーが発生しました:', error);
+                    // More specific error handling for startScanning
+                    if (error.name === 'NotAllowedError' || error.name === 'PermissionDeniedError') {
+                        this.showStatus('カメラへのアクセスが拒否されました。スキャンを開始できません。', 'error');
+                        console.error('[QRCodeReader] エラー詳細: スキャン開始時のカメラアクセス拒否。');
+                    } else if (error.name === 'NotReadableError') {
+                        this.showStatus('カメラが使用中です。スキャンを開始できません。', 'error');
+                        console.error('[QRCodeReader] エラー詳細: スキャン開始時にカメラが使用中。');
+                    } else {
+                        this.showStatus('スキャンの開始に失敗しました。', 'error');
+                    }
+                    this.resetButtons();
+                }
+            }
+
+            // スキャンを停止
+            stopScanning() {
+                if (!this.isScanning) {
+                    console.log('[QRCodeReader] スキャンは停止していません。');
+                    return; // スキャン中でなければ何もしない
+                }
+                console.log('[QRCodeReader] スキャンを停止します。');
+                this.isScanning = false;
+                this.codeReader.reset(); // ZXingのスキャンをリセット（停止）
+                console.log('[QRCodeReader] ZXing codeReader がリセットされました。');
+
+                this.resetButtons(); // ボタンの状態をリセット
+                this.showStatus('スキャンを停止しました', 'ready');
+                this.resultText.textContent = 'QRコードをカメラに向けてください'; // 結果表示を初期状態に戻す
+            }
+
+            // カメラを切り替える
+            async switchCamera() {
+                if (this.devices.length <= 1) {
+                    console.log('[QRCodeReader] カメラが1つしかないため、切り替えはできません。');
+                    return; // カメラが1つ以下なら切り替え不可
+                }
+                console.log('[QRCodeReader] カメラを切り替えます。');
+                // 次のカメラにインデックスを移動（ループ）
+                const previousDeviceIndex = this.currentDeviceIndex;
+                this.currentDeviceIndex = (this.currentDeviceIndex + 1) % this.devices.length;
+                console.log(`[QRCodeReader] カメラを ${previousDeviceIndex} から ${this.currentDeviceIndex} に切り替えます。`);
+
+                // スキャン中の場合は一度停止して、新しいカメラで再開
+                if (this.isScanning) {
+                    console.log('[QRCodeReader] スキャン中だったため、一度停止して再開します。');
+                    this.stopScanning();
+                    // 少し待ってから再開 (カメラの切り替えに時間がかかる場合があるため)
+                    setTimeout(() => this.startScanning(), 500);
+                }
+            }
+
+            // QRコードが検出されたときの処理
+            onQRCodeDetected(result) {
+                const text = result.getText(); // 検出されたQRコードのテキストを取得
+                console.log('[QRCodeReader] QRコードを検出しました:', text);
+
+                this.showResult(text); // 結果を表示
+                this.showStatus('QRコードを読み取りました！', 'ready');
+
+                // 読み取り成功時の視覚的フィードバック
+                this.result.classList.add('success');
+                setTimeout(() => {
+                    this.result.classList.remove('success');
+                }, 2000); // 2秒後に成功アニメーションを削除
+            }
+
+            // 結果を画面に表示
+            showResult(text) {
+                this.resultText.innerHTML = `
+                    <div style="margin-bottom: 15px;">${this.escapeHtml(text)}</div>
+                    <button class="copy-btn">
+                        📋 コピー
+                    </button>
+                `;
+                // コピーボタンにイベントリスナーを追加
+                const copyBtn = this.resultText.querySelector('.copy-btn');
+                if (copyBtn) {
+                    copyBtn.addEventListener('click', () => {
+                        navigator.clipboard.writeText(text)
+                            .then(() => {
+                                this.showAlert('コピーしました！'); // カスタムアラートを使用
+                                console.log('[QRCodeReader] クリップボードにコピーしました。');
+                            })
+                            .catch(err => {
+                                console.error('[QRCodeReader] コピーに失敗しました:', err);
+                                this.showAlert('コピーに失敗しました。');
+                            });
+                    });
+                }
+            }
+
+            // カスタムアラートを表示
+            showAlert(message) {
+                this.modalMessage.textContent = message;
+                this.modal.style.display = 'flex'; // flex を使用して中央揃え
+                console.log(`[QRCodeReader] アラートを表示: ${message}`);
+            }
+
+            // ステータスメッセージとタイプを表示
+            showStatus(message, type) {
+                this.status.textContent = message;
+                this.status.className = `status ${type}`; // クラスを動的に変更してスタイルを適用
+                console.log(`[QRCodeReader] ステータス更新: ${message} (${type})`);
+            }
+
+            // ボタンの状態をリセット
+            resetButtons() {
+                this.startBtn.disabled = false; // 開始ボタンを有効に
+                this.stopBtn.disabled = true; // 停止ボタンを無効に
+                // カメラ切り替えボタンは、デバイスが複数あれば常に有効にする
+                if (this.devices.length > 1) {
+                    this.switchBtn.disabled = false;
+                } else {
+                    this.switchBtn.disabled = true;
+                }
+                console.log('[QRCodeReader] ボタンの状態がリセットされました。');
+            }
+
+            // HTMLエスケープ処理
+            escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+        }
+
+        // DOMContentLoaded イベントが発生したらアプリケーションを開始
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('[QRCodeReader] DOMContentLoaded イベントが発生しました。QRCodeReader インスタンスを作成します。');
+            new QRCodeReader();
+        });
+    </script>
+</body>
+</html>

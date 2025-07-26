@@ -51,7 +51,7 @@
         // 斜め方向に繰り返し描画
         for (let y = -canvas.height; y < canvas.width * 1.5; y += stepY) {
             for (let x = -canvas.width; x < canvas.width * 1.5; x += stepX) {
-                ctx.fillText('六壱亭', x, y);
+                ctx.fillText('つぎはぎ', x, y);
             }
         }
         ctx.restore();
@@ -62,21 +62,21 @@
         ctx.fillStyle = '#b22222';
         ctx.textAlign = 'left';
         ctx.textBaseline = 'alphabetic';
-        ctx.fillText('六壱亭', 80, 220);
+        ctx.fillText('タイトル', 80, 220);
 
         // メニュー名
         ctx.font = 'bold 100px serif';
         ctx.fillStyle = '#222';
-        ctx.fillText('麻婆豆腐', 180, 350);
+        ctx.fillText('劇団つぎはぎ', 100, 350);
 
         // 金額
         ctx.font = 'bold 110px serif';
         ctx.fillStyle = '#b22222';
-        ctx.fillText('¥500', 180, 480);
+        ctx.fillText('¥1,000', 180, 480);
 
         ctx.font = '56px serif';
         ctx.fillStyle = '#555';
-        ctx.fillText('第46回城ノ内祭 模擬店 61HR', 40, 680);
+        ctx.fillText('劇団つぎはぎ 2025.9.14-15', 40, 680);
 
         // チケット番号
         ctx.font = '48px monospace';
