@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Tsugihagi_ticket_01</title>
+    <style>
+        body { background: #000000; }
+        .svg-wrap { display: flex; justify-content: center; margin: 100px 0; }
+    </style>
+    <!-- QR Code Styling CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0/lib/qr-code-styling.js"></script>
+</head>
+<body>
+    <div class="svg-wrap">
+        <canvas id="ticketCanvas" width="1440" height="720"></canvas>
+    </div>
+    <script>
+    // チケット番号をランダム生成
+    let ticketid = Math.floor(100 + Math.random() * 889);
+
+    // QRコード生成（canvas用）
+    // QRコード生成用のライブラリ（qr-code-styling）はcanvas描画に未対応のため、ここではqrcode-generatorを利用
+    // CDN: https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js
+    // 追加
+    (function() {
+        var script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js';
+        script.onload = drawTicket;
+        document.head.appendChild(script);
+    })();
+
+    function drawTicket() {
+        const canvas = document.getElementById('ticketCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // 背景（白で塗りつぶし）
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // 背景に斜めの薄い文字を埋め尽くすように描画
+        ctx.save();
+        ctx.globalAlpha = 0.08; // 透明度
+        ctx.font = 'bold 40px serif';
+        ctx.fillStyle = '#b22222';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        const stepX = 170; // 横方向の間隔
+        const stepY = 80; // 縦方向の間隔
+        ctx.rotate(-Math.PI / 6); // -30度回転
+        // 斜め方向に繰り返し描画
+        for (let y = -canvas.height; y < canvas.width * 1.5; y += stepY) {
+            for (let x = -canvas.width; x < canvas.width * 1.5; x += stepX) {
+                ctx.fillText('六壱亭', x, y);
+            }
+        }
+        ctx.restore();
+
+        // テキスト描画位置調整
+        // 店名
+        ctx.font = 'bold 160px serif';
+        ctx.fillStyle = '#b22222';
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'alphabetic';
+        ctx.fillText('六壱亭', 80, 220);
+
+        // メニュー名
+        ctx.font = 'bold 100px serif';
+        ctx.fillStyle = '#222';
+        ctx.fillText('麻婆豆腐', 180, 350);
+
+        // 金額
+        ctx.font = 'bold 110px serif';
+        ctx.fillStyle = '#b22222';
+        ctx.fillText('¥500', 180, 480);
+
+        ctx.font = '56px serif';
+        ctx.fillStyle = '#555';
+        ctx.fillText('第46回城ノ内祭 模擬店 61HR', 40, 680);
+
+        // チケット番号
+        ctx.font = '48px monospace';
+        ctx.fillStyle = '#b85c00';
+        ctx.textAlign = 'right';
+        ctx.fillText('No.' + ticketid, 1400, 80);
+
+        // QRコード生成（右下）
+        var qr = qrcode(2, 'M');
+        qr.addData('R7 61 mapodoufu ' + ticketid);
+        qr.make();
+        var cellSize = 22;
+        var qrSize = qr.getModuleCount();
+        var qrMargin = 32;
+        var qrW = cellSize * qrSize;
+        var qrX = 80 + 1350 - qrW - qrMargin; // ベース右端からマージン
+        var qrY = 80 + 630 - qrW - qrMargin; // ベース下端からマージン
+        // 白背景
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(qrX, qrY, qrW, qrW);
+        // ドット描画
+        for (var row = 0; row < qrSize; row++) {
+            for (var col = 0; col < qrSize; col++) {
+                if (qr.isDark(row, col)) {
+                    ctx.fillStyle = '#481c30';
+                    ctx.fillRect(qrX + col * cellSize, qrY + row * cellSize, cellSize, cellSize);
+                }
+            }
+        }
+    }
+
+    // 角丸長方形描画
+    function roundRect(ctx, x, y, w, h, r, fill, stroke) {
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.lineTo(x + w - r, y);
+        ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+        ctx.lineTo(x + w, y + h - r);
+        ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+        ctx.lineTo(x + r, y + h);
+        ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+        ctx.lineTo(x, y + r);
+        ctx.quadraticCurveTo(x, y, x + r, y);
+        ctx.closePath();
+        if (fill) ctx.fill();
+        if (stroke) ctx.stroke();
+    }
+    </script>
+</body>
+</html>
