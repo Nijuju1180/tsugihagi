@@ -1,2 +1,4 @@
 このコード書いたのはbem130氏です.
 お借りしておりまっす.
+https://bem130.com/tmp/sf2025/ticket/test1/index.php
+https://bem130.com/tmp/sf2025/ticket/test1/ticket_qr_list.php
