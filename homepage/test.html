@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>アニメーション開始</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+
+    #splash {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      background-color: #000;
+      color: white;
+      font-size: 2rem;
+      animation: fadeOut 2s ease 3s forwards;
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    #main {
+      display: none;
+      opacity: 0;
+      animation: fadeIn 2s ease 5s forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="splash">劇団つぎはぎ</div>
+  <div id="main">
+    <h1>ようこそ！</h1>
+    <p>こちらがホームページのメインコンテンツです。</p>
+  </div>
+
+  <script>
+    // アニメーション後にmainを表示
+    setTimeout(() => {
+      document.getElementById('main').style.display = 'block';
+    }, 3000);
+  </script>
+</body>
+</html>
