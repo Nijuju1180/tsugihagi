@@ -16,64 +16,32 @@
   <title>劇団つぎはぎ - 公式サイト</title>
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
   <style>
-    body, html {
+    html, body {
       margin: 0;
       padding: 0;
       height: 100%;
       overflow: hidden;
-      background: #000;
     }
 
+    /* ロゴ表示画面 */
     #splash {
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100%;
-      background-color: #000;
       color: white;
       font-size: 2rem;
-      animation: fadeOut 2s ease 3s forwards;
-    }
-
-    @keyframes fadeOut {
-      to {
-        opacity: 0;
-        visibility: hidden;
-      }
-    }
-
-    #main {
-      display: none;
-      opacity: 0;
-      animation: fadeIn 2s ease 5s forwards;
-    }
-
-    #splash {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    #bg-image {
+      background-image: url('images/back2.png'); /* ← 背景画像を指定 */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      animation: fadeOut 2s ease 3s forwards; /* 3秒後に2秒かけて消える */
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;      /* 横幅100% */
-      height: 100%;     /* 高さ100% */
-      object-fit: cover; /* 縦横比を維持してフィット */
-      z-index: 0;
-    }
-
-    .splash-text {
-      position: relative;
-      z-index: 1;
-      color: white;
-      font-size: 2rem;
-      text-align: center;
       width: 100%;
+      z-index: 1;
     }
 
+    /* 黒いブランク画面 */
     #blackout {
       position: absolute;
       top: 0;
@@ -91,7 +59,14 @@
       animation: blackFadeIn 0.5s ease forwards;
     }
 
-    @keyframes fadeIn {
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    @keyframes blackFadeIn {
       to {
         opacity: 1;
       }
@@ -99,12 +74,8 @@
   </style>
 </head>
 <body>
-  <div id="splash">
-    <img src="images/back.png" id="bg-image" alt="背景画像">
-    <div class="splash-text">劇団つぎはぎ</div>
-  </div>
-
-  <div id="splash">劇団つぎはぎ</div>
+  <div id="splash"></div>
+  <div id="blackout"></div>
 
   <script>
     // アニメーション終了後に黒画面→home.htmlへ
