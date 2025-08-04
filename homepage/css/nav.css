@@ -27,22 +27,18 @@ nav a.active {
 /* ハンバーガーボタン */
 .nav-toggle {
   display: none;
-  flex-direction: column;
-  cursor: pointer;
-  gap: 5px;
-  width: 30px;
-  height: 30px;
+  width: 60px; /* ボタンの大きさに応じて調整 */
+  height: 40px;
   margin: 10px;
-  position: absolute;
-  top: 10px;
-  right: 10px;
   background: transparent;
   border: none;
-  font-size: 24px;
+  cursor: pointer;
   background-image: url("../images/navibtn.png");
+  background-size: cover; /* 画像がぴったりはまるように */
+  background-position: center;
+  background-repeat: no-repeat;
   z-index: 9995;
 }
-
 .nav-toggle span {
   height: 3px;
   background-color: #333;
@@ -53,33 +49,46 @@ nav a.active {
 /* ====== モバイルスタイル ====== */
 @media (max-width: 768px) {
   .nav {
-    display: none;
+    position: fixed;
+    top: 0;
+    left: -100%;
     flex-direction: column;
-    text-align: center;
-    background: #f1f2ec;
-    position: absolute;
-    padding: 0;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    z-index: 3;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 70%;
+    max-width: 300px;
+    height: 100vh;
+    background-color: #f1f2ec;
+    padding: 60px 20px;
+    gap: 20px;
+    transition: left 0.3s ease;
+    z-index: 9990;
   }
 
   .nav.show {
-    display: flex;
+    left: 0;
   }
 
   .nav-toggle {
-    display: flex;
+    display: block;
+    width: 60px;
+    height: 40px;
+    background-image: url("../images/navibtn.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    background-color: transparent;
+    z-index: 9999;
+    cursor: pointer;
   }
 }
 
 /* ====== PCスタイル ====== */
 @media (min-width: 769px) {
   .nav {
-    display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
     position: static;
   }
 
