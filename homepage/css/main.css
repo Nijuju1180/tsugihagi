@@ -17,31 +17,6 @@ header {
   position: relative;
 }
 
-nav {
-  background: #f1f2ec;
-  padding: 15px 0px;
-  text-align: center;
-  gap: 30px;
-  z-index: 2;
-  position: sticky;
-  top: 0px;
-  left: 0;
-  width: 100%;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-nav a {
-  margin: 0 15px;
-  text-decoration: none;
-  color: #33327e;
-  font-weight: bold;
-}
-
-nav a.active {
-  border-bottom: 2px solid #33327e;
-}
-
-
 section {
   padding: 40px 20px;
   max-width: 800px;
