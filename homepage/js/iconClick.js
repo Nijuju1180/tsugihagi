@@ -1,7 +1,7 @@
 window.addEventListener("DOMContentLoaded", () => {
   const icon = document.getElementById("icon");
   let clickCount = 0;
-  const threshold = 5; // 5回クリックでログインページへとぶ
+  const threshold = 5; // 5蝗槭け繝ｪ繝�繧ｯ縺ｧ繝ｭ繧ｰ繧､繝ｳ繝壹�ｼ繧ｸ縺ｸ縺ｨ縺ｶ
 
   icon.addEventListener("click", () => {
     clickCount++;
