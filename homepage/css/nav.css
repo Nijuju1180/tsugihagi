@@ -9,7 +9,7 @@ nav {
   top: 0px;
   left: 0;
   width: calc(100% - 20px);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   justify-content: center;
 }
 
@@ -27,18 +27,21 @@ nav a.active {
 /* ハンバーガーボタン */
 .nav-toggle {
   display: none;
-  width: 60px; /* ボタンの大きさに応じて調整 */
+  width: 60px;
+  /* ボタンの大きさに応じて調整 */
   height: 40px;
   margin: 10px;
   background: transparent;
   border: none;
   cursor: pointer;
   background-image: url("../images/navibtn.png");
-  background-size: cover; /* 画像がぴったりはまるように */
+  background-size: cover;
+  /* 画像がぴったりはまるように */
   background-position: center;
   background-repeat: no-repeat;
   z-index: 9995;
 }
+
 .nav-toggle span {
   height: 3px;
   background-color: #333;
