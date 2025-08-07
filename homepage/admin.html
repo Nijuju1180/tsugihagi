@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>管理画面 - 劇団つぎはぎ</title>
   <link rel="stylesheet" href="css/admin.css">
 </head>
+
 <body>
   <div class="admin-container">
     <h1>管理画面</h1>
@@ -14,7 +16,7 @@
       <p id="accessCount">読み込み中...</p>
       <p>このデータは適当だよ～<br>データベースがわからんからどうしようもない<br>Node.js勉強しまっす</p>
       <h2>ほかにしたい事</h1>
-      <p>✅ ログイン数（アクセス数）を見たい<br>✅ 公演情報の編集<br>✅ お知らせの更新<br>✅ メンバー紹介の追加・編集<br>✅ お問い合わせの閲覧</p>
+        <p>✅ ログイン数（アクセス数）を見たい<br>✅ 公演情報の編集<br>✅ お知らせの更新<br>✅ メンバー紹介の追加・編集<br>✅ お問い合わせの閲覧</p>
     </div>
     <button id="logoutBtn">ログアウト</button>
   </div>
@@ -26,7 +28,7 @@
 
     // 仮データ
     document.getElementById('accessCount').textContent = '123 回';
- 
+
     // ログアウト
     document.getElementById('logoutBtn').addEventListener('click', () => {
       sessionStorage.removeItem('loggedIn');
@@ -34,4 +36,5 @@
     });
   </script>
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,60 +29,61 @@
 </head>
 
 <body>
-<div class="container">
-<header>
-  <div class="header-inner">
-    <h1>
-      <img src="images/icon-circle_transparent.png" alt="劇団アイコン" class="icon" id="icon">
-      劇団つぎはぎ
-    </h1>
-    <p>継いで、剥いで、あなたを魅せる舞台を作る。</p>
+  <div class="container">
+    <header>
+      <div class="header-inner">
+        <h1>
+          <img src="images/icon-circle_transparent.png" alt="劇団アイコン" class="icon" id="icon">
+          劇団つぎはぎ
+        </h1>
+        <p>継いで、剥いで、あなたを魅せる舞台を作る。</p>
+      </div>
+    </header>
+
+    <button class="nav-toggle" id="navToggleBtn" aria-label="メニューを開く"></button>
+
+    <nav class="nav" id="navMenu">
+      <a href="home.html">ホーム</a>
+      <a href="about.html">劇団紹介</a>
+      <a href="shows.html" class="active">公演情報</a>
+      <a href="support.html">支援・チケット</a>
+      <a href="contact.html">お問い合わせ</a>
+    </nav>
+
+    <section id="shows">
+      <h2>公演情報</h2>
+      <h3>【最新公演】</h3>
+      <p>『未定（近日公開予定）』<br>
+        日時：2025年9月14日(日)、15日(月)<br>
+        会場：藍住町総合文化ホール</p>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 劇団つぎはぎ All rights reserved.</p>
+    </footer>
+
+    <button id="toTopBtn" title="ページの先頭へ">↑</button>
+    <script>
+      const toTopBtn = document.getElementById("toTopBtn");
+
+      // スクロールで表示・非表示を切り替え
+      window.onscroll = function () {
+        if (document.documentElement.scrollTop > 300) {
+          toTopBtn.style.display = "block";
+        } else {
+          toTopBtn.style.display = "none";
+        }
+      };
+
+      // ボタンをクリックするとトップに戻る
+      toTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      });
+    </script>
   </div>
-</header>
-
-<button class="nav-toggle" id="navToggleBtn" aria-label="メニューを開く"></button>
-
-<nav class="nav" id="navMenu">
-  <a href="home.html">ホーム</a>
-  <a href="about.html">劇団紹介</a>
-  <a href="shows.html" class="active">公演情報</a>
-  <a href="support.html">支援・チケット</a>
-  <a href="contact.html">お問い合わせ</a>
-</nav>
-
-<section id="shows">
-  <h2>公演情報</h2>
-  <h3>【最新公演】</h3>
-  <p>『未定（近日公開予定）』<br>
-  日時：2025年9月14日(日)、15日(月)<br>
-  会場：藍住町総合文化ホール</p>
-</section>
-
-<footer>
-  <p>&copy; 2025 劇団つぎはぎ All rights reserved.</p>
-</footer>
-
-<button id="toTopBtn" title="ページの先頭へ">↑</button>
-<script>
-  const toTopBtn = document.getElementById("toTopBtn");
-
-  // スクロールで表示・非表示を切り替え
-  window.onscroll = function () {
-    if (document.documentElement.scrollTop > 300) {
-      toTopBtn.style.display = "block";
-    } else {
-      toTopBtn.style.display = "none";
-    }
-  };
-
-  // ボタンをクリックするとトップに戻る
-  toTopBtn.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  });
-</script>
-</div>
 </body>
+
 </html>

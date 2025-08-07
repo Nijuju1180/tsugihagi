@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,61 +29,64 @@
 </head>
 
 <body>
-<div class="container">
-<header>
-  <div class="header-inner">
-    <h1>
-      <img src="images/icon-circle_transparent.png" alt="劇団アイコン" class="icon" id="icon">
-      劇団つぎはぎ
-    </h1>
-    <p>継いで、剥いで、あなたを魅せる舞台を作る。</p>
+  <div class="container">
+    <header>
+      <div class="header-inner">
+        <h1>
+          <img src="images/icon-circle_transparent.png" alt="劇団アイコン" class="icon" id="icon">
+          劇団つぎはぎ
+        </h1>
+        <p>継いで、剥いで、あなたを魅せる舞台を作る。</p>
+      </div>
+    </header>
+
+    <button class="nav-toggle" id="navToggleBtn" aria-label="メニューを開く"></button>
+
+    <nav class="nav" id="navMenu">
+      <a href="home.html">ホーム</a>
+      <a href="about.html">劇団紹介</a>
+      <a href="shows.html">公演情報</a>
+      <a href="support.html" class="active">支援・チケット</a>
+      <a href="contact.html">お問い合わせ</a>
+    </nav>
+
+    <section id="support">
+      <h2>支援・チケット</h2>
+      <p>劇団つぎはぎでは、クラウドファンディングやチケットのご予約を受け付けております。</p>
+      <div class="button-row">
+        <a class="public-btn"
+          href="https://camp-fire.jp/projects/862102/view?utm_campaign=cp_po_share_c_msg_mypage_projects_show"
+          target="_blank">支援ページはこちら</a>
+        <a class="public-btn" href="nopage.html" target="_blank">チケット予約ページ</a>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 劇団つぎはぎ All rights reserved.</p>
+    </footer>
+
+    <button id="toTopBtn" title="ページの先頭へ">↑</button>
+    <script>
+      const toTopBtn = document.getElementById("toTopBtn");
+
+      // スクロールで表示・非表示を切り替え
+      window.onscroll = function () {
+        if (document.documentElement.scrollTop > 300) {
+          toTopBtn.style.display = "block";
+        } else {
+          toTopBtn.style.display = "none";
+        }
+      };
+
+      // ボタンをクリックするとトップに戻る
+      toTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      });
+    </script>
   </div>
-</header>
-
-<button class="nav-toggle" id="navToggleBtn" aria-label="メニューを開く"></button>
-
-<nav class="nav" id="navMenu">
-  <a href="home.html">ホーム</a>
-  <a href="about.html">劇団紹介</a>
-  <a href="shows.html">公演情報</a>
-  <a href="support.html" class="active">支援・チケット</a>
-  <a href="contact.html">お問い合わせ</a>
-</nav>
-
-<section id="support">
-  <h2>支援・チケット</h2>
-  <p>劇団つぎはぎでは、クラウドファンディングやチケットのご予約を受け付けております。</p>
-  <div class="button-row">
-  <a class="public-btn" href="https://camp-fire.jp/projects/862102/view?utm_campaign=cp_po_share_c_msg_mypage_projects_show" target="_blank">支援ページはこちら</a>
-  <a class="public-btn" href="nopage.html" target="_blank">チケット予約ページ</a>
-  </div>
-</section>
-
-<footer>
-  <p>&copy; 2025 劇団つぎはぎ All rights reserved.</p>
-</footer>
-
-<button id="toTopBtn" title="ページの先頭へ">↑</button>
-<script>
-  const toTopBtn = document.getElementById("toTopBtn");
-
-  // スクロールで表示・非表示を切り替え
-  window.onscroll = function () {
-    if (document.documentElement.scrollTop > 300) {
-      toTopBtn.style.display = "block";
-    } else {
-      toTopBtn.style.display = "none";
-    }
-  };
-
-  // ボタンをクリックするとトップに戻る
-  toTopBtn.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  });
-</script>
-</div>
 </body>
+
 </html>
