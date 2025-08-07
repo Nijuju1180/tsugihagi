@@ -22,11 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Escキーでナビゲーションを閉じる
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && window.innerWidth <= 768) {
-    navMenu.classList.remove("show");
-  }
-});
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && window.innerWidth <= 768) {
+      navMenu.classList.remove("show");
+    }
+  });
 
   // ウィンドウリサイズ時に閉じておく（安全対策）
   window.addEventListener("resize", () => {

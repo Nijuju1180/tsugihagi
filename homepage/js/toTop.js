@@ -1,4 +1,4 @@
-window.addEventListener("load",()=>{
+window.addEventListener("load", () => {
 
   const toTopBtn = document.createElement("button");
   toTopBtn.textContent = "↑";
