@@ -29,6 +29,9 @@ nav a.active {
   display: none;
   width: 60px;
   /* ボタンの大きさに応じて調整 */
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
   height: 40px;
   margin: 10px;
   background: transparent;
@@ -65,10 +68,11 @@ nav a.active {
     padding: 60px 20px;
     gap: 20px;
     transition: left 0.3s ease;
-    z-index: 9990;
+    z-index: 3;
   }
 
   .nav.show {
+    display: flex;
     left: 0;
   }
 
@@ -84,6 +88,7 @@ nav a.active {
     background-color: transparent;
     z-index: 9999;
     cursor: pointer;
+    position: absolute;
   }
 }
 
