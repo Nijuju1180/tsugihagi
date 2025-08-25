@@ -26,7 +26,7 @@
   <link rel="stylesheet" href="css/toTopBtn.css">
   <script src="js/iconClick.js"></script>
   <script src="js/navToggle.js"></script>
-  <script arc="js/posterImg.js"></script>
+  <script src="js/posterLightbox.js"></script>
   <script src="js/toTop.js"></script>
 </head>
 
@@ -56,11 +56,17 @@
       <h2>新着情報</h2>
       <a href="contact.html">● 劇団公式SNSアカウント開設</a>
       <p>● 劇団公式HPを開設</p>
-      <a href="shows.html">● 初回講演、始動！</a>
-
+      <a href="shows.html">● 初回講演『大人なら、大人だから、大人でも。』始動！</a>
+      <p>● ポスター及びフライヤーを公開</p>
       <div class="poster-gallery">
-        <img src="images/Otonanaraotonadakaraotonademo_flier.jpg" alt="最新公演ポスター1">
-        <img src="images/Otonanaraotonadakaraotonademo_poster.jpg" alt="最新公演ポスター2">
+        <img src="images/Otonanaraotonadakaraotonademo_flier.jpg" alt="最新公演ポスター1" class="poster-img">
+        <img src="images/Otonanaraotonadakaraotonademo_poster.jpg" alt="最新公演ポスター2" class="poster-img">
+      </div>
+
+      <!-- モーダル（拡大表示用） -->
+      <div id="lightbox" class="lightbox">
+        <span class="close">&times;</span>
+        <img class="lightbox-content" id="lightboxImg">
       </div>
     </section>
 
