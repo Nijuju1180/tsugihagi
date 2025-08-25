@@ -72,25 +72,3 @@ footer {
     padding: 10px;
   }
 }
-
-/* ポスター画像のレイアウト */
-/* ポスター画像ギャラリー */
-.poster-gallery {
-  display: flex;
-  justify-content: center;   /* 中央寄せ */
-  gap: 20px;                 /* 画像の間隔 */
-  margin: 30px 0;
-  flex-wrap: wrap;           /* スマホ表示で折り返す */
-}
-
-.poster-gallery img {
-  max-width: 35%;            /* 横並びで2枚収まるように */
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-  transition: transform 0.3s ease;
-}
-
-.poster-gallery img:hover {
-  transform: scale(1.05);    /* ホバーで少し拡大する演出 */
-}
