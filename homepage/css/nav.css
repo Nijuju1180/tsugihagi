@@ -76,6 +76,7 @@ nav a.active {
     left: 0;
   }
 
+  /* 初期状態のボタン（閉じているとき） */
   .nav-toggle {
     display: block;
     width: 60px;
@@ -89,14 +90,18 @@ nav a.active {
     z-index: 9999;
     cursor: pointer;
     position: absolute; /* ヘッダー直下・bodyの左上基準 */
-    top: 185px;          /* ヘッダーの高さ分だけ下に置く */
+    top: 185px;          /* ヘッダーの高さ分だけ下に */
     left: 0;
-    margin: 0;          /* デフォルトmarginは消す */
+    margin: 0;           /* デフォルトmarginは消す */
+    transition: all 0.3s;
   }
 
-  /* ×ボタン用 */
+  /* 開いたときの固定＆×ボタン */
   .nav-toggle.active {
-    background-image: url("../images/xbtn.png");
+    position: fixed;     /* 画面左上に固定 */
+    top: 0;
+    left: 0;
+    background-image: url("../images/xbtn.png"); /* ×アイコンに切替 */
   }
 }
 
