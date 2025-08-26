@@ -55,7 +55,7 @@ nav a.active {
 /* ====== モバイルスタイル ====== */
 @media (max-width: 768px) {
   .nav {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: -100%;
     flex-direction: column;
@@ -68,7 +68,7 @@ nav a.active {
     padding: 60px 20px;
     gap: 20px;
     transition: left 0.3s ease;
-    z-index: 3;
+    z-index: 9998;
   }
 
   .nav.show {
@@ -88,16 +88,26 @@ nav a.active {
     background-color: transparent;
     z-index: 9999;
     cursor: pointer;
-    position: absolute;
+    position: fixed;
+    top: 15px;
+    right: 15px;
+  }
+
+  /* ×ボタン用 */
+  .nav-toggle.active {
+    background-image: url("../images/xbtn.png");
   }
 }
 
 /* ====== PCスタイル ====== */
 @media (min-width: 769px) {
   .nav {
+    display: flex;
     justify-content: center;
     gap: 30px;
     position: sticky;
+    top: 0;
+    z-index: 2;
   }
 
   .nav-toggle {

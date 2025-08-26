@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
   navToggle.addEventListener("click", (event) => {
     event.stopPropagation(); // 自身のクリックで閉じるのを防ぐ
     navMenu.classList.toggle("show");
+
+    // ← ここでボタンの見た目を切り替える
+    navToggle.classList.toggle("active");
   });
 
   // メニュー内のクリックでは閉じないようにする
@@ -18,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const isMobile = window.innerWidth <= 768;
     if (isMobile && navMenu.classList.contains("show")) {
       navMenu.classList.remove("show");
+      navToggle.classList.remove("active"); // ← ボタンも元に戻す
     }
   });
 
@@ -25,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && window.innerWidth <= 768) {
       navMenu.classList.remove("show");
+      navToggle.classList.remove("active"); // ← ボタンも元に戻す
     }
   });
 
@@ -32,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", () => {
     if (window.innerWidth > 768) {
       navMenu.classList.remove("show");
+      navToggle.classList.remove("active"); // ← ボタンも元に戻す
     }
   });
 });
