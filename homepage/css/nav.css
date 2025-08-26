@@ -97,7 +97,7 @@ nav a.active {
   .nav {
     justify-content: center;
     gap: 30px;
-    position: static;
+    position: sticky;
   }
 
   .nav-toggle {
