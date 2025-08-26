@@ -6,7 +6,7 @@ window.addEventListener("DOMContentLoaded", () => {
   icon.addEventListener("click", () => {
     clickCount++;
     if (clickCount >= threshold) {
-      window.location.href = "secret.html";
+      window.location.href = "login.php";
     }
   });
 });
