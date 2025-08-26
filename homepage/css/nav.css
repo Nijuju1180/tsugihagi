@@ -88,9 +88,10 @@ nav a.active {
     background-color: transparent;
     z-index: 9999;
     cursor: pointer;
-    position: fixed;
-    top: 15px;
-    right: 15px;
+    position: absolute; /* ヘッダー直下・bodyの左上基準 */
+    top: 185px;          /* ヘッダーの高さ分だけ下に置く */
+    left: 0;
+    margin: 0;          /* デフォルトmarginは消す */
   }
 
   /* ×ボタン用 */
