@@ -99,7 +99,7 @@ nav a.active {
   /* 開いたときの固定＆×ボタン */
   .nav-toggle.active {
     position: fixed;     /* 画面左上に固定 */
-    top: 0;
+    top: 10px;
     left: 0;
     background-image: url("../images/xbtn.png"); /* ×アイコンに切替 */
   }

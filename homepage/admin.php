@@ -20,6 +20,6 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     <li><a href="edit_shows.php">公演情報の管理</a></li>
     <li><a href="edit_support.php">支援・チケットページの管理</a></li>
   </ul>
-  <a href="logout.php">ログアウト</a>
+  <a href="home.html">ログアウト</a>
 </body>
 </html>
