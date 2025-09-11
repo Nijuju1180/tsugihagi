@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="劇団つぎはぎ旗揚げ公演『大人なら、大人だから、大人でも。』公式サイト。">
+    <meta property="og:title" content="劇団つぎはぎ旗揚げ公演『大人なら、大人だから、大人でも。』公式サイト">
+    <meta property="og:description" content="継いで、剥いで、あなたを魅せる舞台を作る。">
+    <meta property="og:image" content="https://tsugihagi.com/images/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="劇団つぎはぎ旗揚げ公演『大人なら、大人だから、大人でも。』公式サイト">
+    <meta name="twitter:description" content="まだ大人でないあなたと、大人になってしまったあなたへの物語。">
+    <meta name="twitter:image" content="https://tsugihagi.com/images/og-image.png">
+    <meta property="og:image" content="https://tsugihagi.com/images/og-image.png">
+    <meta name="twitter:site" content="@tsugihagi_troup">
+    <title>劇団つぎはぎ - 公式サイト</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/header-inner.css">
+    <link rel="stylesheet" href="css/icon.css">
+    <link rel="stylesheet" href="css/poster.css">
+    <link rel="stylesheet" href="css/toTopBtn.css">
+    <script src="js/iconClick.js"></script>
+    <script src="js/navToggle.js"></script>
+    <script src="js/posterLightbox.js"></script>
+    <script src="js/toTop.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Helvetica', sans-serif;
+            background: #f1f2ec;
+            color: #333;
+            padding-top: 0px;
+        }
+
+        .site-header {
+            background: linear-gradient(90deg, #533900, #e5b95b);
+            color: #f1f2ec;
+            padding: 15px 40px;
+            text-align: center;
+            top: 0;
+            width: 100%;
+            z-index: 1;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        section {
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        h1 {
+            font-family: "ヒラギノ明朝 ProN", "Hiragino Mincho Pro";
+        }
+
+        h2 {
+            color: #533900;
+        }
+
+        h4 {
+            font-size: 20px;
+        }
+
+        footer {
+            background: #533900;
+            color: #f1f2ec;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .member {
+            margin: 10px 0;
+        }
+
+        .public-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #28a745;
+            color: #f1f2ec;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .public-btn:hover {
+            background: #218838;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #28a745;
+            color: #f1f2ec;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            nav a {
+                display: block;
+                margin: 10px 0;
+            }
+
+            nav {
+                padding: 10px;
+            }
+        }
+
+        .button-row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        #toTopBtn {
+            position: fixed;
+            bottom: 40px;
+            right: 30px;
+            z-index: 100;
+            font-size: 20px;
+            background-color: #3f2b00;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        #toTopBtn:hover {
+            background-color: #533900;
+        }
+
+        #characters {
+            padding: 40px 20px;
+            background: #f1f2ec;
+        }
+
+        .character-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .character-card {
+            background: white;
+            border-radius: 13px;
+            padding: 15px;
+            box-shadow: 0 4px 1px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .character-card img {
+            max-width: 100%;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+
+        .character-card h3 {
+            margin: 10px 0 5px;
+            font-size: 1.12em;
+        }
+
+        .character-card p {
+            font-size: 0.9em;
+            color: #555;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header class="site-header">
+            <div class="header-inner">
+                <h1>
+                    大人なら、大人だから、大人でも。
+                </h1>
+                <p>まだ大人でないあなたと、大人になってしまったあなたへの物語。</p>
+            </div>
+        </header>
+
+        <section id="characters">
+            <!-- ポスター画像 -->
+            <div class="poster-gallery">
+                <img src="images/Otonanaraotonadakaraotonademo_flier.jpg" alt="最新公演ポスター1" class="poster-img">
+                <img src="images/Otonanaraotonadakaraotonademo_poster.png" alt="最新公演ポスター2" class="poster-img">
+            </div>
+
+            <!-- モーダル（拡大表示用） -->
+            <div id="lightbox" class="lightbox">
+                <span class="close">&times;</span>
+                <img class="lightbox-content" id="lightboxImg">
+            </div>
+
+            <h2>公演情報</h2>
+            <p>
+                ◯場所<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;藍住町総合文化ホール 2F 交流室2<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;〒771-1203&nbsp;徳島県板野郡藍住町奥野字矢上前32-1<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;鉄道：JR徳島駅からJR勝瑞駅&nbsp;12分<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;バス：JR徳島駅から「藍住役場前」停留所下車&nbsp;&nbsp;のち徒歩5分<br>
+                ◯日時<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;2025年9月<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14日(日) 1st:開場14:00～,上演14:30～<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14日(日) 2st:開場18:00～,上演18:30～<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15日(月) 3st:開場 9:30～,上演10:00～<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15日(月) 4st:開場14:00～,上演14:30～<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15日(月) 5st:開場18:00～,上演18:30～<br>
+                ◯上演時間<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;約120分<br>
+            </p>
+            <br>
+
+            <h2>あらすじ</h2>
+            <p>
+                …ちょっとお客さん、こんなとこで寝ないでくださいよ。え？面白い話、ですか…
+                。ここ喫茶店ですよ？そういうのはキャバクラとかクラブでやってくれません？はぁ…そうですねぇ、……幸って文字が、手錠とか手枷を表していること知ってますか？あーそう、幸せの幸です。幸せを追い求めれば追い求めるほど、その手についた枷は絡まり、邪魔をするってことなんですかねぇ…皮肉な話ですよ。そんな幸の文字に絡め取られた6
+                人のお話でもしましょうか。長くなりますから…こちらサービスです。
+            </p>
+            <br>
+
+            <h2>登場人物</h2>
+            <div class="character-list">
+                <div class="character-card">
+                    <img src="images/otonanara/koda.jpg" alt="koda">
+                    <h3>河合 幸(かわい みゆき)</h3>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;パパ活がやめられない、見た目も精神もそろそろしんどい。<br>&nbsp;&nbsp;&nbsp;&nbsp;小学校の頃の将来の夢はピンクのかわいい一軒家で優しい旦那さんとかわいい子供とチワワと暮らすこと。
+                    </p>
+                    <p class="actor">演じる人：大和天音</p>
+                </div>
+
+                <div class="character-card">
+                    <img src="images/otonanara/kawai.jpg" alt="kawai">
+                    <h3>倖田 莉乃(こうだ りの)</h3>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;不倫体質、いつも自分だけ不倫と知らないで慰謝料に次ぐ慰謝料を請求され続けている。恋のリボ払い。若く見える年上が好きなだけなのに、おじさん好きといわれるのが納得いかない。
+                    </p>
+                    <p class="actor">演じる人：ゆな</p>
+                </div>
+
+                <div class="character-card">
+                    <img src="images/otonanara/konoya.jpg" alt="konoya">
+                    <h3>幸野谷 将(こうのや ゆき)</h3>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;ギャンブル依存、エリートだったのにスポーツ賭博にうっかりハマってしまったのが運の尽き。クズだが、放っておけないと思わせるタイプ。<br>&nbsp;&nbsp;&nbsp;&nbsp;元カノ全員がうっすら未練を持っている。
+                    </p>
+                    <p class="actor">演じる人：龍之介</p>
+                </div>
+
+                <div class="character-card">
+                    <img src="images/otonanara/uemura.jpg" alt="uemura">
+                    <h3>上幸 翼(うえむら たすく)</h3>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;ゲイ、ノンケばかり好きになる、気分は万年ジュリエット。親の干渉がゼロで家族に何も求められてこなかったので自分を頼ってくれる男がタイプだが、そのことは自覚していない。
+                    </p>
+                    <p class="actor">演じる人：亜煌</p>
+                </div>
+
+                <div class="character-card">
+                    <img src="images/otonanara/namikawa.jpg" alt="namikawa">
+                    <h3>濤川 幸来(なみかわ さら)</h3>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;浪人が留まるところを知らない、受験料とか年齢とか積み重なった参考書とか、全てがもう引き返せない所まで来ている。正直ここまで受からないのは人より時間のかかる苗字が悪い気もする。
+                    </p>
+                    <p class="actor">演じる人：早記</p>
+                </div>
+
+                <div class="character-card">
+                    <img src="images/otonanara/okugawa.jpg" alt="okugawa">
+                    <h3>奥川 幸司(おくがわ こうじ)</h3>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;就活がうまくいかず、この世の終わりのような闇金会社に就職してしまった。<br>&nbsp;&nbsp;&nbsp;&nbsp;就職のために上京してきたので給食センターのおばさんをしている母親と電話をした後はいつも少し泣いている。
+                    </p>
+                    <p class="actor">演じる人：いーやま</p>
+                </div>
+
+                <div class="character-card">
+                    <img src="images/otonanara/miyama.jpg" alt="miyama">
+                    <h3>深山 一(みやま はじめ)</h3>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;なんか喫茶店の店長かっこいいなと思い開業した。想定していたより楽しくて天職だと思っている。<br>&nbsp;&nbsp;&nbsp;&nbsp;この世のデリカシーと呼ばれるものを一つも持ち合わせていない。
+                    </p>
+                    <p class="actor">演じる人：まみ</p>
+                </div>
+            </div>
+            <br>
+
+            <h2>チケット情報</h2>
+            </p>
+            <a href="support.html">◯チケット購入はこちら</a>
+            </p>
+            <br>
+
+            <h2>お問い合わせ</h2>
+            <p>
+                <img src="images/icon-circle_transparent.png" alt="つぎはぎアイコン" width="20" height="20"
+                    style="vertical-align: middle; margin-right: 6px;">
+                メール：<a href="https://tsugihagi.com">劇団つぎはぎ公式ホームページ</a>
+            </p>
+            <p>
+                <img src="images/mail-icon.png" alt="メールアイコン" width="20" height="20"
+                    style="vertical-align: middle; margin-right: 6px;">
+                メール：<a href="mailto:tsugihagi.theatretroup@gmail.com">tsugihagi.theatretroup@gmail.com</a>
+            </p>
+            <p>
+                <img src="images/x-icon.png" alt="x-icon" width="20" height="20"
+                    style="vertical-align: middle; margin-right: 6px;">
+                X(旧Twitter)：<a href="https://x.com/tsugihagi_troup" target="_blank">@tsugihagi_troup</a>
+            </p>
+            <p>
+                <img src="images/instagram-icon.png" alt="インスタアイコン" width="20" height="20"
+                    style="vertical-align: middle; margin-right: 6px;">
+                Instagram：<a href="https://www.instagram.com/tsugihagi_troup?igsh=ZnJ2YTFqOG00ZTQ4"
+                    target="_blank">@tsugihagi_troup</a>
+            </p>
+            <p>
+                <img src="images/Corich-icon.png" alt="Corichアイコン" width="20" height="20"
+                    style="vertical-align: middle; margin-right: 6px;">
+                Corich：<a href="https://stage.corich.jp/troupe/119054" target="_blank">劇団つぎはぎ</a>
+            </p>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 劇団つぎはぎ All rights reserved.</p>
+        </footer>
+
+        <button id="toTopBtn" title="ページの先頭へ">↑</button>
+        <script>
+            const toTopBtn = document.getElementById("toTopBtn");
+
+            // スクロールで表示・非表示を切り替え
+            window.onscroll = function () {
+                if (document.documentElement.scrollTop > 300) {
+                    toTopBtn.style.display = "block";
+                } else {
+                    toTopBtn.style.display = "none";
+                }
+            };
+
+            // ボタンをクリックするとトップに戻る
+            toTopBtn.addEventListener("click", () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            });
+        </script>
+    </div>
+</body>
+
+</html>
